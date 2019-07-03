@@ -2,20 +2,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
+	<!-- 继承SPring Boot的父项目，可以利用Spring Boot的依赖管理功能，减少后面的配置量 -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.6.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	
+	<!-- 当前目录的信息 -->
 	<groupId>org.Hilliaa</groupId>
+	<!-- 项目名称 -->
 	<artifactId>weixin</artifactId>
+	<!-- 项目版本号 -->
 	<version>0.0.1-SNAPSHOT</version>
+	<!-- 项目显示名称，但是Eclipse中无效 -->
 	<name>weixin</name>
 	<description>Demo project for Spring Boot</description>
 
+
 	<properties>
 		<java.version>11</java.version>
+		<!-- 源代码的字符编码 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 
 	<dependencies>
