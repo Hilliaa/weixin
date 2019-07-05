@@ -10,6 +10,9 @@ import org.Hilliaa.weixin.service.MessageConvertHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -74,11 +77,29 @@ public class MessageReceiverController {
 		
 		LOG.debug("转换后的消息对象\n{}\n", inMessage);
 		
-		ByteArrayOutputStream bos = new ByteArrayOutputStream();
-		ObjectOutputStream out = new ObjectOutputStream(bos);
-		out.writeObject(inMessage);
+		String channel = "hillia_" + inMessage.getMsgType();
 		
-		byte[] data = bos.toByteArray();
+		//ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		//ObjectOutputStream out = new ObjectOutputStream(bos);
+		//out.writeObject(inMessage);
+		
+		//byte[] data = bos.toByteArray();
+		
+		
+		//inMessageTemplate.execute(new RedisCallback<InMessage>() {
+
+			//@Override
+			//public InMessage doInRedis(RedisConnection connection) throws DataAccessException {
+			
+				//
+				//connection.publish(channel.getBytes(),data);
+				//return null;
+			//}
+			
+		//});
+		
+		
+		inMessageTemplate.convertAndSend(channel, inMessage);
 		
 		return "success";
 	}
